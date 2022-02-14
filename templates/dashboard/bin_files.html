@@ -1,0 +1,112 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+<style type="text/css">
+	.light {
+		background-color: #ffffff;
+		box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+	}
+  .center {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+  }
+
+</style>
+
+
+
+<h1>Bin Files</h1><hr><h6 class="center">These files will automatically delete after 30 days, do you want to set an backup for all your file to prevent from losing it? - <a href="{% url 'backup' %}" style="text-decoration: none;">Set Backup</a></h6><br>
+
+
+<center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ask"><i class='bx bx-trash nav__icon' ></i> Empty Bin</button><br><i style='color:red' class='material-icons'>error</i>This may result in permanent data lost...</center>{% if status %}<br><h5 style="color:green">{{status|safe}}</h5>{% endif %}<br><br>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12">
+      <style type="text/css">
+        input {
+          width: 100%;
+        }
+      </style>
+      <form method="GET" action="{{ request.path }}">
+        <input class="form-control" placeholder="Search..." name="query" id="query" type="text" aria-label="Search" value="{{query}}">
+      </form><br/>
+      </div>
+
+	{% if filenames %}
+	{% for filename in filenames %} 
+
+    <div class="col-md-4">
+
+        <div class="media-body">
+
+
+	<div class="container">
+  		<button type="button" class="btn btn-light btn-lg light" data-toggle="modal" data-target="#myModal{{ forloop.counter }}">{{filename|truncatechars:20}}</button>
+
+  		<center>
+  			<div class="modal center" id="myModal{{ forloop.counter }}" role="dialog">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          Choose what you want to do...<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+              <p>This file will be permanently deleted if you delete it from the bin! <i style='color:red' class='material-icons'>error</i></p>
+		          <p>{{filename}}<br><br><a href="{% url 'request-view' %}?filename={{filename}}&inbin=True" target="_blank" download><button class="btn btn-info" type="submit">Download</button></a>    <a href="{% url 'request-view' %}?filename={{filename}}&inbin=True" target="_blank"><button class="btn btn-success" type="submit">View</button></a>    <a href="{% url 'delete' %}?filename={{filename}}&inbin=True"><button type="button" class="btn btn-danger">Delete</button></a></p>
+		        </div>
+        	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+
+        </div>
+      </article>
+    </div>
+
+<br><br><br>
+
+	{% endfor %}
+
+  </div>
+</main>
+
+  
+</div>
+	{% else %}
+		<center class="center"><h5>No File was found in the bin...</h5><hr>
+    <img src="https://static.wixstatic.com/media/cc77e6_789cd0d41afe4d80bec4efb7a8db5f52~mv2.gif" height="250"></center>
+		<br><br><br><br><br><br>
+	{% endif %}
+
+	<br><br><br><br><br><br><br><br>
+
+<div class="modal center" id="ask" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+              Empty Bin?<i style='color:red' class='material-icons'>error</i><button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure that you want to empty the Bin Now? Your files cannot be restored if it's deleted from the bin!<br><br><a href="" data-dismiss="modal"><button class="btn btn-success" type="submit">Cancel</button></a>    <a href="{% url 'empty-bin' %}"><button type="button" class="btn btn-danger"><i class='bx bx-trash nav__icon' ></i> Delete</button></a>
+                <a href="{% url 'empty-bin' %}"></a></p>
+            </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+

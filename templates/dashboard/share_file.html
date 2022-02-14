@@ -1,0 +1,96 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+<style>
+    b {
+      color : #1c55ff
+    }
+    .center {
+      margin: auto;
+      width: 100%;
+      padding: 10px;
+      box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+    }
+</style>
+
+    <center>
+    <br><h1>Share File</h1><hr>
+    <h6><b>{{filename}}</b></h6>
+    </center>
+
+    <div class="col-md-5 center">
+
+        <form method="GET" id="link">
+          {% csrf_token %}
+          <input name="linksharing" value="on" hidden>
+        </form>
+
+        <button class="btn btn-primary" type="submit" onclick="copyToClipboard('{{link}}')"><i class="material-icons">link</i></button>
+        <a style="text-decoration:none" href="javascript:copyToClipboard('{{link}}')" form="link" type="submit">&nbsp;Get Link</a>&nbsp;&nbsp;
+
+        <span>{{link_message|safe}}</span> 
+
+        <br><br>Only User with this link can view the file, you can turn the sharing off for the files <a style="text-decoration:none" href="{% url 'shared-files' %}">here</a> later when you wish and no one will be able to view the file again.
+
+        </div><br>
+
+    <div class="col-md-5 center">
+
+        <button class="btn btn-primary"><i class="material-icons">email</i></button><a style="text-decoration:none" href="#" form="link" type="submit"> &nbsp;&nbsp;Email File</a>&nbsp;&nbsp;
+
+        <span>{{email_message|safe}}</span> 
+
+        <br><br>
+        Send the file directly to the user via email, just give us the user's email and we will send him the attachment through : <a style="text-decoration:none" href="">sharing@fileshare.ml</a>. He will only have access to the file via email and your file sharing for this file will not be turned on!<hr>
+
+        <form method="POST" action="{% url 'share-file-email' filename %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share this email with anyone else.</small>
+            <label for="email">Message</label>
+            <textarea name="message" cols="10" rows="5" class="textarea form-control" id="message" placeholder="Message... (Optional)"></textarea>
+            <small id="emailHelp" class="form-text text-muted">This message will be highly encrypted.</small>
+          </div>
+          <button type="submit" class="btn btn-success">Send File</button>
+        </form>
+
+
+    </div><br>
+
+    <div class="col-md-5 center">
+
+        <button class="btn btn-primary"><i class="material-icons">link</i><i class="material-icons">email</i></button><a style="text-decoration:none" href="javascript:copyToClipboard('{{link}}')" form="link" type="submit"> &nbsp;&nbsp;Email Link</a>&nbsp;&nbsp;
+
+        <span>{{email_message|safe}}</span> 
+
+        <br><br>We will email the user the link of the file through : <a style="text-decoration:none" href="">sharing@fileshare.ml</a>. The file sharing for this file will be turned on and user with the link will be able to view the file. Just as same as the first option but we will send the user an email so you don't have to!<hr>
+    
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share this email with anyone else.</small>
+            <label for="email">Message</label>
+            <textarea name="message" cols="10" rows="3" class="textarea form-control" id="message" placeholder="Message... (Optional)"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Send Link</button>
+        </form>
+
+    </div>
+
+
+<br><br><br><br>
+
+<script type="text/javascript">
+    function copyToClipboard(element) {
+      navigator.clipboard.writeText(element);
+      document.getElementById('link').submit();
+  }
+</script>
+
+{% endblock %}

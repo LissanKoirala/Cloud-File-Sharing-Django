@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <center>
+    <br><br><h3>Add Local Device</h3><hr>
+    <h6>If you add a local device, you can view and download files from that computer.</h6>
+    </center><hr><br>
+<style type="text/css">
+    .center {
+      margin: auto;
+      width: 100%;
+      padding: 10px;
+      box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+    }
+</style>
+
+<main role="main" class="container">
+    <div class="row">
+    <div class="col-md-7 center">
+    <div class="content-section">
+
+	<form>
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">Hostname</label>
+	    <input class="form-control" name="hostname" aria-describedby="LkemailHelp" placeholder="(Example : DESKTOP-7Lk2NT)">
+	    <small id="emailHelp" class="form-text text-muted">Type 'hostname' in the command line and it will appear. <a style="text-decoration:none" href="/help">help</a></small>
+	  </div>
+	  <button type="submit" class="btn btn-primary">Add Hostname</button>
+	</form>
+
+	</div>
+	</div>
+	</div>
+</main>
+	
+<br><br><br><br>
+<center><h4><a style="text-decoration:none" href="/help">Help me connect my Local Device</a></h4></center>
+{% endblock %}

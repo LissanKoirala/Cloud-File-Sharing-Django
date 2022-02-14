@@ -1,0 +1,109 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+	<style type="text/css">
+		b {
+			color : #1c55ff
+		}
+		.light {
+			background-color: #ffffff;
+			box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+		}
+		.center	{
+			margin: auto;
+			width: 100%;
+			padding: 10px;
+		}
+	</style>
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <center>
+    <br><br><h1>Shared Files</h1><hr>
+    <h6><b>Files</b> you <b>share</b> will <b>appear here</b>. You <b>can turn</b> the <b>sharing off</b> for the <b>files whenever</b> you <b>wish</b> and <b>nobody</b> will have <b>access</b> to the <b>file</b>!</h6><hr>Turing this off will lead to nobody being able to access it until you turn it on back again!<br><br>
+    </center>
+
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12">
+	    	{% if success %}
+		    <div class="alert alert-success" role="alert">
+		 		{{success}}
+			</div>
+			{% endif %}
+      <style type="text/css">
+        input {
+          width: 100%;
+        }
+      </style>
+      <form method="GET" action="{{ request.path }}">
+        <input class="form-control" placeholder="Search..." name="query" id="query" type="text" aria-label="Search" value="{{query}}">
+      </form><br/>
+      </div>
+
+
+  {% if filenames %}
+	{% for filename in filenames %} 
+
+    <div class="col-md-4">
+
+        <div class="media-body">
+
+
+	<div class="container">
+  		<button type="button" class="btn btn-light btn-lg light" data-toggle="modal" data-target="#myModal{{ forloop.counter }}"><i class='far fa-file'></i>  {{filename|truncatechars:15}}</button>
+
+  		<center>
+  			<div class="modal center" id="myModal{{ forloop.counter }}" role="dialog">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          Choose what you want to do...<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        <div class="modal-body">
+		          <p>{{filename}}<br><br><a href="{% url 'turn-off-sharing' filename %}"><button type="button" class="btn btn-danger">Turn Sharing Off!</button></a>    <a href="javascript:copyToClipboard{{ forloop.counter }}('https://fileshare.ml/uploads/{{folder}}/{{filename}}?token={{filename.share_id}}')"><button type="button" class="btn btn-primary">Copy Link</button></a><br><br><span id="copied{{ forloop.counter }}"></span></p>
+		        </div>
+        	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+
+        </div>
+      </article>
+    </div>
+
+<br><br><br>
+
+<script type="text/javascript">
+    function copyToClipboard{{ forloop.counter }}(element) {
+      navigator.clipboard.writeText(element);
+      var mySpan = document.getElementById('copied{{ forloop.counter }}').innerHTML;
+      mySpan += "<b>Link Has been Copied!</b>";
+      document.getElementById('copied{{ forloop.counter }}').innerHTML = mySpan;
+  }
+</script>
+
+	{% endfor %}
+
+  {% else %}
+    <div class="alert alert-primary center" role="alert">
+      Sharing is not turned on for any of your files!
+    </div>
+  {% endif %}
+
+  </div>
+</main>
+
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+
+{% endblock %}

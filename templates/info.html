@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style type="text/css">
+          .danger {
+            background-color: #ff0000;
+          }
+          .content-section {
+            background: #ffffff;
+            padding: 10px 20px;
+            border: 1px solid #dddddd;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+          }
+          
+          .article-title {
+            color: #444444;
+          }
+          
+          a.article-title:hover {
+            color: #428bca;
+            text-decoration: none;
+          }
+          
+          .article-content {
+            white-space: pre-line;
+          }
+          
+          .article-img {
+            height: 50px;
+            width: 50px;
+            margin-right: 16px;
+          }
+          
+          .article-metadata {
+            padding-bottom: 1px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #e3e3e3
+          }
+          
+          .article-metadata a:hover {
+            color: #333;
+            text-decoration: none;
+          }
+          
+          .article-svg {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+          }
+      	  .center {
+		      margin: auto;
+		      width: 100%;
+		      padding: 10px;
+		    }
+		  .blue	{
+		  	color :#1c55ff;
+		  }
+    </style>
+
+
+<style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+    body { background:rgb(255,255,255); }
+    form { max-width:420px; margin:50px auto; }
+
+    .feedback-input {
+      color:black;
+      font-family: Helvetica, Arial, sans-serif;
+      font-weight:500;
+      font-size: 18px;
+      border-radius: 5px;
+      line-height: 22px;
+      background-color: transparent;
+      border:2px solid #1c55ff;
+      transition: all 0.3s;
+      padding: 13px;
+      margin-bottom: 15px;
+      width:100%;
+      box-sizing: border-box;
+      outline:0;
+    }
+
+    .feedback-input:focus { border:2px solid #1c55ff; }
+
+    textarea {
+      height: 150px;
+      line-height: 150%;
+      resize:vertical;
+    }
+
+    [type="submit"] {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      width: 100%;
+      background:#1c55ff;
+      border-radius:5px;
+      border:0;
+      cursor:pointer;
+      color:white;
+      font-size:24px;
+      padding-top:10px;
+      padding-bottom:10px;
+      transition: all 0.3s;
+      margin-top:-4px;
+      font-weight:700;
+    }
+    [type="submit"]:hover { background:#1c55ff; }
+</style>
+
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12"><br>
+      </div>
+    <div class="col-md-10 center">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="/">File Share</a></h3>
+          <div class="article-metadata">
+              <a class="mr-2" href="#">About Us</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+            <small class="text-muted">2020</small>
+          </div>
+          <p class="article-content">We help you save your files in a way that is easily accessable from anywhere around the world! We provide great features such as instant viewing of files without having to download, we encrypt your files to keep them safe. It is available on any device, upload from your laptop and view it from your phone, enjoy your precieous moments form anywhere instantly easily!<hr>Start uploading your files to be easily accessible today!<br><i class="fa fa-info-circle blue"></i> Also get 2GB of free uploads from us!<br><br><a href="{% url 'register' %}"><button type="button" class="btn btn-success">Create your Free account</button></a>   <a href="{% url 'login' %}"><button type="button" class="btn btn-primary">Login</button></a><hr>
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="col-md-10 center">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="/help">Need Help?</a></h3>
+          <div class="article-metadata">
+              <a class="mr-2" href="#">Help</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+            <small class="text-muted">2020</small>
+          </div>
+          <p class="article-content">Would you like some help on how to start? Or confused about something?<br><br><a href="/help"><button type="button" class="btn btn-primary">Get Help Here</button></a>
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="col-md-10 center">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="/help">Contact Us</a></h3>
+          <div class="article-metadata">
+              <a class="mr-2" href="#">Contact Bot</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+            <small class="text-muted">2020</small>
+          </div>
+          <p class="article-content">If you want to contact us, you can do so by filling this contact form!<p>
+
+{% if message_name %}
+  {% if recaptcha_error %}
+          <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+              <h2><a class="article-title" href="">Error!</a></h2>
+              <p class="article-content">Hello, {{ message_name }}!<br/>{{ recaptcha_error }}</p>
+            </div>
+          </article> 
+
+        <form action="{% url 'contact' %}" method="POST">
+          {% csrf_token%}      
+          <input name="message-name" type="text" class="feedback-input" placeholder="Name" required />
+          <input name="message-username" type="text" class="feedback-input" placeholder="Username (Optional)" />  
+          <input name="message-email" type="text" class="feedback-input" placeholder="Email" required />
+          <textarea name="message" class="feedback-input" placeholder="Message..." required></textarea>
+          <div class="g-recaptcha" data-sitekey="6LfRE9MZAAAAADdZZQfRhXEzX118wHqNFoPiX2hr"></div><br/>
+          <input type="submit" value="SUBMIT"/>
+        </form>
+  {% else %}
+          <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="">Contact Us</a>
+                <small class="text-muted"></small>
+              </div>
+              <h2><a class="article-title" href="">Contact Sent!</a></h2>
+              <p class="article-content">Hello, {{ message_name }}!<br/>We have recieved your enquiry, We will respond to you shortly at: <a style="text-decoration:none" href="mailto:{{ message_email }}">{{ message_email }}</a><br/>If you have any enquiries to make, feel free to do so and we will reach to you as soon as posssible!</p>
+            </div>
+          </article> 
+  {% endif %}
+
+{% else %}
+
+  <form action="{% url 'contact' %}" method="POST">
+    {% csrf_token%}      
+    <input name="message-name" type="text" class="feedback-input" placeholder="Name" required />
+    <input name="message-username" type="text" class="feedback-input" placeholder="Username (Optional)" />  
+    <input name="message-email" type="text" class="feedback-input" placeholder="Email" required />
+    <textarea name="message" class="feedback-input" placeholder="Message..." required></textarea>
+    <center><div class="g-recaptcha" data-sitekey="6LclBbYZAAAAAAElll4IOdr2s3RqH2hgLn9xUlED"></div></center><br/>
+    <input type="submit" value="SUBMIT"/>
+  </form>
+{% endif %}
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+          </button>
+          </p>
+        </div>
+      </article>
+    </div>
+
+
+    <div class="col-md-10 center">
+      <article class="media content-section">
+        <div class="media-body">
+        <h3><a style="text-decoration:none" href="#">Home Page</a><hr>
+        <style>
+          .responsive {
+            max-width: 100%;
+            height: auto;
+          }
+        </style>
+        <img class="responsive" src="https://static.wixstatic.com/media/cc77e6_df0aca7c58ce4c928cc4ce0d8277c672~mv2.png/v1/fill/w_938,h_438,al_c,q_90,usm_0.66_1.00_0.01/home.webp"/>
+        </div>
+      </article>
+    </div>
+
+
+    <div class="col-md-10 center">
+      <article class="media content-section">
+        <div class="media-body">
+        <h3><a style="text-decoration:none" href="#">Cloud Dashboard</a><hr>
+        <style>
+          .responsive {
+            max-width: 100%;
+            height: auto;
+          }
+        </style>
+        <img class="responsive" src="https://static.wixstatic.com/media/cc77e6_ef5b42c0797a43ffa8dc93770160f3cc~mv2.png/v1/fill/w_938,h_398,al_c,q_90,usm_0.66_1.00_0.01/dashboard.webp"/>
+        </div>
+      </article>
+    </div>
+
+
+    <div class="col-md-10 center">
+      <article class="media content-section">
+        <div class="media-body">
+        <h3><a style="text-decoration:none" href="#">Files - Cloud Dashboard</a><hr>
+        <style>
+          .responsive {
+            max-width: 100%;
+            height: auto;
+          }
+        </style>
+        <img class="responsive" src="https://static.wixstatic.com/media/cc77e6_4730b1b076474c228baf0b8977746740~mv2.png/v1/fill/w_938,h_402,al_c,q_90,usm_0.66_1.00_0.01/files.webp"/>
+        </div>
+      </article>
+    </div>
+
+
+    <div class="col-md-10 center">
+      <article class="media content-section">
+        <div class="media-body">
+        <h3><a style="text-decoration:none" href="#">Change Profile</a><hr>
+        <style>
+          .responsive {
+            max-width: 100%;
+            height: auto;
+          }
+        </style>
+        <img class="responsive" src="https://static.wixstatic.com/media/cc77e6_3c64b67c985b4f5494ac4ee0445105c0~mv2.png/v1/fill/w_938,h_466,al_c,q_90,usm_0.66_1.00_0.01/profile.webp"/>
+        </div>
+      </article>
+    </div>
+
+
+
+
+    </div>
+    </main>
+
+
+
+    <br><br>
+
+    <br><br><br><br><br><br><br><br>
+
+{% endblock %}

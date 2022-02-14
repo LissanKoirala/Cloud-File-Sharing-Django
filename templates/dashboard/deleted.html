@@ -1,0 +1,15 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+    <center>
+    <br><br><h1>File Deletion</h1><hr>
+    <h5>{{deleted|safe}}</h5><br>
+	<a href="{% url 'view' %}"><button class="btn btn-success" type="submit">Show Existing Files</button></a><br><br>
+	<img src="https://static.wixstatic.com/media/cc77e6_789cd0d41afe4d80bec4efb7a8db5f52~mv2.gif" height="250">
+    <br><br><br><br><br><br><br><br><br><br>
+
+    </center>
+
+{% endblock %}

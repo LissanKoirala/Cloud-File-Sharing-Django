@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+<style>
+b {
+	color : #1c55ff
+}
+.center	{
+	margin: auto;
+	width: 100%;
+	padding: 10px;
+}
+</style>
+
+    <center>
+    <br><h1>Email Sent</h1><hr>
+    </center>
+
+    <div class="col-md-8 center">
+    <h6><b>Email</b> has been to <b>sent</b> to <b>{{email}}</b> with the file : <b>{{filename}}</b>. This <b>message</b> was also <b>included :</b><hr>{{message|safe}}<hr></h6>
+    </div>
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+
+{% endblock %}

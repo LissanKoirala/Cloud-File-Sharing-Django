@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style type="text/css">
+    .center {
+      margin: auto;
+      width: 100%;
+      box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+      padding: 10px;
+    }
+</style>
+
+
+<main role="main" class="container">
+    <div class="row">
+    <div class="col-md-7 center">
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Join Today</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Register</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Login</a>
+                <br/>
+                Want to know how we use your email address? Visit - Privacy Policy
+            </small>
+        </div>
+    </div>
+</div>
+</div>
+</main>
+
+{% endblock content %}

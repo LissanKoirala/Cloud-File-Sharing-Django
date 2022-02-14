@@ -1,0 +1,20 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+<style>b{color : #1c55ff}</style>
+
+    <center>
+    <br><br><h1>Access Denied! 🔐</h1><hr>
+    <h5><b>Sharing</b> for this <b>file</b> has been <b>disabled</b> by the <b>owner</b> of this <b>file</b><i class="material-icons" style="color:red">lock</i><br>Please contact the <b>file owner</b> to know more!</h5><hr><h5>You are logged in as : {{user}}</h5><br>
+
+    <a href="{% url 'logout' %}"><button class="btn btn-info" type="submit">Switch Account?</button></a><br><br>
+
+	<a href="{% url 'view' %}"><button class="btn btn-success" type="submit">View my files</button></a><br><br>
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+    </center>
+
+{% endblock %}

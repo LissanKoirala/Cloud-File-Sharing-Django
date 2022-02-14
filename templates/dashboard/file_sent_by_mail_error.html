@@ -1,0 +1,21 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+<style>b{color : #1c55ff}</style>
+
+
+
+    <center>
+    <br><br><h1>Error Occured</h1><hr>
+    <h5><b>Email Server blocked</b> the <b>file</b> from being <b>sent</b>!<hr>This <b>may have occured</b> because your file <b>contains</b> some <b>harmful</b> content in it!<br> We <b>know</b> it's a <b>hassle</b>, please <b>consider</b> using the <b>link sharing feature</b></h5><br>
+	<a href="{% url 'share-file' filename %}"><button class="btn btn-success" type="submit">Link Sharing Feature</button></a><br><br>
+	<img src="https://i.pinimg.com/originals/7c/72/84/7c72843cc6c94c286089fbe3823bd755.gif" height="250">
+    <br><br><br><br><br><br><br><br><br><br>
+
+    </center>
+
+
+
+{% endblock %}

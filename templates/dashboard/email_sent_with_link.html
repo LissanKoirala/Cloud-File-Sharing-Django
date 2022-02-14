@@ -1,0 +1,32 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+<style>
+b {
+	color : #1c55ff
+}
+.center	{
+	margin: auto;
+	width: 100%;
+	padding: 10px;
+}
+</style>
+
+    <center>
+    <br><br><h1>Link Sent</h1><hr>
+    </center>
+
+    <div class="col-md-8 center">
+	    <h6><b>Email</b> has been sent to <b>{{email}}</b> with <b>link</b> to access <b>{{filename}}</b>. This <b>message</b> was also <b>provided :</b><hr>{{message|safe}}<hr>If you <b>don't</b> want this <b>file</b> to be <b>accessed</b> in the <b>future</b> by <b>anyone</b> then you can <b>disable</b> this <a style="text-decoration:none" href="{% url 'shared-files' %}">here</a></h6><hr><br>
+
+	    <br><br><br><br><br><br><br><br><br><br>
+	</div>
+	    
+
+
+	    <br><br><br><br><br><br><br><br><br><br>
+
+
+{% endblock %}

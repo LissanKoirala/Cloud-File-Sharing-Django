@@ -1,0 +1,53 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177217174-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-177217174-1');
+    </script>
+
+<style type="text/css">
+	#header {
+		background-color: #3b69f5;
+		color: white;
+	}
+	.module h2, .module caption, .inline-group h2 {
+		background: #f2f2f2 !important;
+	}
+	.a.section:link, a.section:visited {
+	    color: black;
+	}
+	#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: white;
+	}
+	div.breadcrumbs {
+	    background: #f2f2f2;
+	    padding: 10px 40px;
+	    border: none;
+	    font-size: 14px;
+	    color: black;
+	    text-align: left;
+	}
+	div.breadcrumbs a {
+	    color: black;
+	}
+	a.section:link, a.section:visited {
+	    color: black;
+	    text-decoration: none;
+	}
+</style>
+
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

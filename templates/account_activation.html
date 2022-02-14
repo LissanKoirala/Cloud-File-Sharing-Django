@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <style type="text/css">
+          .danger {
+            background-color: #ff0000;
+          }
+          .content-section {
+            background: #ffffff;
+            padding: 10px 20px;
+            border: 1px solid #dddddd;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+          }
+          
+          .article-title {
+            color: #444444;
+          }
+          
+          a.article-title:hover {
+            color: #428bca;
+            text-decoration: none;
+          }
+          
+          .article-content {
+            white-space: pre-line;
+          }
+          
+          .article-img {
+            height: 50px;
+            width: 50px;
+            margin-right: 16px;
+          }
+          
+          .article-metadata {
+            padding-bottom: 1px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #e3e3e3
+          }
+          
+          .article-metadata a:hover {
+            color: #333;
+            text-decoration: none;
+          }
+          
+          .article-svg {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+          }
+    </style>
+
+    <br><br><h1><center>Account Activation</center></h1><hr>
+
+    {% if success %}
+
+    <h5><center>{{success}}<br><br><a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Home</button></a></h5></center>
+
+   	{% endif %}
+
+
+    {% if error %}
+
+    <h5><center>{{error}}<br><br><a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Home</button></a></h5></center>
+
+    {% endif %}
+
+    {% if not success %}
+    {% if not error %}
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12"><br>
+      </div>
+    <div class="col-md-7">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="#">Email Verification</a></h3>
+          <div class="article-metadata">
+              <a class="mr-2" href="#">Email Bot</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+            <small class="text-muted">2020</small>
+          </div>
+          <p class="article-content">An activation email has been sent to your Email : <a style="text-decoration:none" href="#">{{email}}</a>,<br>Please verify your email address so that you can reset your account password and secure your files and be able to access them whenever you want.<br><i class="fa fa-info-circle blue"></i> Please also do check your Junk Folders!<hr>Does the Email Address seem Incorrect? No worries! <a href="{% url 'profile' %}"><button type="button" class="btn btn-primary">Change Email</button></a>.</p>
+        </div>
+      </article>
+    </div>
+    <div class="col-md-4">
+      <article class="media content-section">
+        <div class="media-body">
+        <h3><a style="text-decoration:none" href="#">Email Sent</a><hr>
+        <style>
+          .responsive {
+            max-width: 100%;
+            height: auto;
+          }
+        </style>
+        <img class="responsive" src="https://static.wixstatic.com/media/cc77e6_a74a2ec1f81442ff8076f7564e760052~mv2.gif"/>
+        </div>
+      </article>
+    </div>
+    </div>
+    </main>
+
+    {% endif %}
+    {% endif %}
+
+    <br><br>
+
+    <br><br><br><br><br><br><br><br>
+
+{% endblock %}

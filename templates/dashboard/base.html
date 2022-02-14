@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="https://lissanstatic.netlify.app/styles.css">
+
+        <title>Cloud Dashboard</title>
+    </head>
+    <body id="body-pd">
+        <header class="header" id="header">
+            <div class="header__toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
+
+            <div>
+                <img src="https://image.flaticon.com/icons/png/512/252/252035.png" alt="" height="30">
+            </div>
+        </header>
+
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div>
+                    <a href="{% url 'cloud-dashboard' %}" class="nav__logo" style="text-decoration:none">
+                        <i class='bx bx-cloud nav__logo-icon'></i>
+                        <span class="nav__logo-name">FileShare</span>
+                    </a>
+
+                    <div class="nav__list">
+                        {% if request.path == "/cloud/dashboard/" %}
+                        <a href="{% url 'cloud-dashboard' %}" class="nav__link active" style="text-decoration:none">
+                        {% else %}
+                        <a href="{% url 'cloud-dashboard' %}" class="nav__link" style="text-decoration:none">
+                        {% endif %}
+                        <i class='bx bx-grid-alt nav__icon' ></i>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+
+
+                        {% if request.path == "/cloud/dashboard/upload/" %}
+                        <a href="{% url 'upload' %}" class="nav__link active" style="text-decoration:none">
+                        {% else %}
+                        <a href="{% url 'upload' %}" class="nav__link" style="text-decoration:none">
+                        {% endif %}
+                            <i class="material-icons">add</i>
+                            <span class="nav__name">Upload</span>
+                        </a>
+
+
+                        {% if request.path == "/cloud/dashboard/show_files/" %}
+                        <a href="{% url 'view' %}" class="nav__link active" style="text-decoration:none">
+                        {% else %}
+                        <a href="{% url 'view' %}" class="nav__link" style="text-decoration:none">
+                        {% endif %}
+                            <i class='bx bx-folder nav__icon' ></i>
+                            <span class="nav__name">My Files</span>
+                        </a>
+
+                        
+                        {% if request.path == "/cloud/dashboard/shared_files/" %}
+                        <a href="{% url 'shared-files' %}" class="nav__link active" style="text-decoration:none">
+                        {% else %}
+                        <a href="{% url 'shared-files' %}" class="nav__link" style="text-decoration:none">
+                        {% endif %}
+                            <i class="material-icons">share</i>
+                            <span class="nav__name">Shared Files</span>
+                        </a>
+
+
+                        {% if request.path == "/cloud/dashboard/bin/" %}
+                        <a href="{% url 'bin' %}" class="nav__link active" style="text-decoration:none">
+                        {% else %}
+                        <a href="{% url 'bin' %}" class="nav__link" style="text-decoration:none">
+                        {% endif %}
+                            <i class='bx bx-trash nav__icon' ></i>
+                            <span class="nav__name">Deleted Files</span>
+                        </a>
+
+                        <!--{% if request.path == "/cloud/dashboard/show_files/" %}
+                        <a href="{% url 'view' %}" class="nav__link active" style="text-decoration:none">
+                        {% else %}
+                        <a href="{% url 'view' %}" class="nav__link" style="text-decoration:none">
+                        {% endif %}
+                            <i class='bx bx-bookmark nav__icon' ></i>
+                            <span class="nav__name">Favorites</span>
+                        </a>
+
+
+                        {% if request.path == "/cloud/dashboard/show_files/" %}
+                        <a href="{% url 'view' %}" class="nav__link active" style="text-decoration:none">
+                        {% else %}
+                        <a href="{% url 'view' %}" class="nav__link" style="text-decoration:none">
+                        {% endif %}
+                            <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
+                            <span class="nav__name">Analytics</span>
+                        </a>-->
+
+                        <br><br>
+
+                        <a href="{% url 'profile' %}" class="nav__link" style="text-decoration:none">
+                            <i class='bx bx-user nav__icon' ></i>
+                            <span class="nav__name">Profile</span>
+                        </a>
+
+                        <a href="{% url 'logout' %}" class="nav__link" style="text-decoration:none">
+                            <i class='bx bx-log-out nav__icon' ></i>
+                            <span class="nav__name">Log Out</span>
+                        </a>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+        {% block content %}{% endblock %}
+
+
+
+        <!--===== MAIN JS =====-->
+        <script src="https://lissanstatic.netlify.app/main.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

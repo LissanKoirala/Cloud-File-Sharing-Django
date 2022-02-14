@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">
+        body {
+            background:  #ffffff;
+            color: #000000;
+            margin-top: 5rem;
+          }
+          h1, h2, h3, h4, h5, h6 {
+            color: #444444;
+          }
+          ul {
+            margin: 0;
+          } 
+          .navbar-dark .navbar-brand {
+            color: #0e2431 !important;
+          }
+          .bg-white {
+            box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+          }
+          .site-header .navbar-nav .nav-link {
+            color: #0e2431;
+          }
+          .site-header .navbar-nav .nav-link:hover {
+            color: #0e2431;
+          }
+          .site-header .navbar-nav .nav-link.active {
+            font-weight: 500;
+          }
+          .danger {
+            background-color: #ff0000;
+          }
+          .footer {
+            background-color: #0E2431;
+            color: #fff;
+            text-align: center;
+            font-weight: 600;
+            padding: 2rem 0
+          }
+
+          .footer__title {
+            font-size: 2rem;
+            margin-bottom: 2rem
+          }
+
+          .footer__social {
+            margin-bottom: 2rem
+          }
+
+          .footer__icon {
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0 1rem
+          }
+    </style>
+
+    <title>File Share</title>
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">File Share</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="mr-auto">
+            </div>
+            <!-- Navbar Right Side -->
+            <!-- Navbar Right Side -->
+            {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="/help">Help</a>
+                <a class="nav-item nav-link" href="{% url 'local-devices-dashboard' %}">Local Devices</a>
+                <a class="nav-item nav-link" href="{% url 'cloud-dashboard' %}">Cloud Dashboard</a>
+                <a class="nav-item nav-link" href="/logout">Logout</a>
+            {% else %}
+                <a class="nav-item nav-link" href="/help">Help</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <br><br>
+
+    <footer class="footer">
+        <div class="footer__social">
+            <a href="https://github.com/LissanKoirala" class="footer__icon" target="_blank"><img src="https://static.wixstatic.com/media/cc77e6_1320d75947d74ee08beaf9058febe037~mv2.png/v1/fill/w_238,h_213,al_c,lg_1,q_85/Capture-removebg-preview.webp" height="30" width="30"></a>
+            <br><br>info@lissankoirala.ml
+        </div>
+        <p>&#169; <span class="year"></span> File Share</p>
+    </footer>
+
+
+    <script type="text/javascript">
+        const date = new Date();
+        document.querySelector('.year').innerHTML = date.getFullYear();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

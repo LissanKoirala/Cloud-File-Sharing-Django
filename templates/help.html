@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <style type="text/css">
+          .danger {
+            background-color: #ff0000;
+          }
+          .content-section {
+            background: #ffffff;
+            padding: 10px 20px;
+            border: 1px solid #dddddd;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+          }
+          
+          .article-title {
+            color: #444444;
+          }
+          
+          a.article-title:hover {
+            color: #428bca;
+            text-decoration: none;
+          }
+          
+          .article-content {
+            white-space: pre-line;
+          }
+          
+          .article-img {
+            height: 50px;
+            width: 50px;
+            margin-right: 16px;
+          }
+          
+          .article-metadata {
+            padding-bottom: 1px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #e3e3e3
+          }
+          
+          .article-metadata a:hover {
+            color: #333;
+            text-decoration: none;
+          }
+          
+          .article-svg {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+          }
+    </style>
+
+    <center>
+
+    <br><br><h2>File Share Help - {{who_user}}</h2><hr>
+    </center>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12">
+      <style type="text/css">
+        input {
+          width: 100%;
+        }
+      </style>
+      <form method="GET" action="/search">
+        <input class="form-control" placeholder="Search..." name="query" id="query" type="text" aria-label="Search">
+      </form><br/>
+      </div>
+    <div class="col-md-4">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="#">Add Devices</a></h3>
+          <div class="article-metadata">
+              <a class="mr-2" href="#">Help Bot</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+            <small class="text-muted">2020</small>
+          </div>
+          <p class="article-content"><div>To find the hostname of your computer, simply open the command line and type 'hostname', then paste the result <a style="text-decoration:none" href="/admin/devices/device/">here</a> in the hostname section and hit save. Done! Now your device has been added to your file sharing list and will now appear in your home page ready to be connected!</div></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="col-md-4">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="#">Connect to Device</a></h3>
+          <div class="article-metadata">
+              <a class="mr-2" href="#">Help Bot</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+            <small class="text-muted">2020</small>
+          </div>
+          <p class="article-content"><div>To connect to a device, look for the hostname of the device on your home page. Once you have found it click on the button. Then wait for a moment, A list of folders will show up, click on the one you would like to access, then click on the file and the file will open in your browser!</div></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="col-md-4">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="#">Remove Device</a></h3>
+          <div class="article-metadata">
+              <a class="mr-2" href="#">Help Bot</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+            <small class="text-muted">2020</small>
+          </div>
+          <p class="article-content"><div>If you would no longer like to conenct to a device for any reasons and would like to delete it from your home page, go to this <a style="text-decoration:none" href="/admin/devices/device/">link</a>, select the device and the on the bottom left you will find the delete option, just click it and confirm, Done! The device will no longer show up!</div></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>
+ 
+{% endblock %}

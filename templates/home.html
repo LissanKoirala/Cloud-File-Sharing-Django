@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <style type="text/css">
+          .content-section {
+            background: #ffffff;
+            padding: 10px 20px;
+            border: 1px solid #dddddd;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 2px 2px rgba(0,0,0,.2);
+          }
+          
+          .article-title {
+            color: #444444;
+          }
+          
+          a.article-title:hover {
+            color: #428bca;
+            text-decoration: none;
+          }
+          
+          .article-content {
+            white-space: pre-line;
+          }
+          
+          .article-img {
+            height: 50px;
+            width: 50px;
+            margin-right: 16px;
+          }
+          
+          .article-metadata {
+            padding-bottom: 1px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #e3e3e3
+          }
+          
+          .article-metadata a:hover {
+            color: #333;
+            text-decoration: none;
+          }
+          
+          .article-svg {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+          }
+          .center {
+              margin: auto;
+              width: 100%;
+              padding: 10px;
+            }
+          .blue {
+            color :#1c55ff;
+          }
+    </style>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12"><br>
+      </div>
+
+    <div class="col-md-5 center">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="/">Your Local Devices</a></h3>
+          <div class="article-metadata">
+            <a class="mr-2" href="#">Select device to connect...</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+          </div>   
+          <br>
+            {% if devices %}
+            {% for device in devices %}
+
+                <a href="/?device={{device.hostname}}"><button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal">{{device.hostname}}</button></a><hr>
+
+            {% endfor %}
+            {% else %}
+            You don't have any device to connect...
+            {% endif %}
+        </div>
+      </article>
+    </div>
+
+    <div class="col-md-5 center">
+      <article class="media content-section">
+        <div class="media-body">
+          <h3><a style="text-decoration:none" href="/">Cloud Storage</a></h3>
+          <div class="article-metadata">
+            <a class="mr-2" href="#">Manage your cloud files...</a><img src="https://media.discordapp.net/attachments/709392199506198610/759434142021713930/verified.jpg?width=468&height=468" style="max-height: 16px;" alt="Verified!"/>
+          </div>   
+            <br><a href="{% url 'cloud-dashboard' %}"><button class="btn btn-primary" type="submit">Cloud Dashboard</button></a><hr>
+            <a href="{% url 'upload' %}"><button class="btn btn-success" type="submit">Upload Files</button></a>
+            <a href="{% url 'view' %}"><button class="btn btn-success" type="submit">View Files</button></a>
+        </div>
+      </article>
+    </div>
+
+
+
+    </div>
+    </main>
+
+
+<center>
+
+    <br><br><br><hr>
+    <a href="/logout/"><button class="btn btn-success" type="submit">Logout</button></a>    <a href="{% url 'password_change' %}"><button class="btn btn-danger" type="submit">Change Password</button></a>    <a href="{% url 'add-device' %}"><button class="btn btn-info" type="submit">Add Device</button></a>
+
+
+
+
+    <div class="container">
+        <center>
+            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  Connecting to the device...<button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>Please wait until we are connected with the device...</p><img src="https://i.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.webp">
+                </div>
+            <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</center>
+
+
+
+{% endblock %}
